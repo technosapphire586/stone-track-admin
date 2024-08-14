@@ -1,0 +1,111 @@
+﻿@model StoneTrackAdmin.Models.MaterialModel
+
+@{
+    ViewData["Title"] = "Add Material";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cities.js"></script>
+<div class="container-fluid sb2">
+    <div class="row">
+        <div class="sb2-2">
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                    </li>
+                    <li class="active-bre">
+                        <a href="#"> Ui Form</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="/Material/MaterialDetail"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to Material</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp">
+                            <div class="inn-title">
+                                @if (Model.MaterialID > 0)
+                                {
+                                    <h4>Edit Material Details</h4>
+                                }
+                                else
+                                {
+                                    <h4>Add Material Details</h4>
+                                }
+                            </div>
+                            <form asp-action="AddMaterial" asp-controller="Material" method="post">
+                                <div class="tab-inn">
+                                    <input asp-for="MaterialID" type="hidden" />
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <label for="userType" class="form-group">Material Name</label>
+                                            <select asp-for="MaterialName" class="validate form-control">
+                                                <option value="">Select Material Name</option>
+                                                <option value="10 MM">10 MM</option>
+                                                <option value="20 MM">20 MM</option>
+                                                <option value="30 MM">30 MM</option>
+                                                <option value="40 MM">40 MM</option>
+                                                <option value="60 MM">60 MM</option>
+                                                <option value="GSB">GSB</option>
+                                                <option value="DUST">DUST</option>
+                                            </select>
+                                            <span class="text-danger" asp-validation-for="MaterialName"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="last_name" class="form-group">Purchase Price</label>
+                                            <input asp-for="PurchasePrice" type="text" class="validate form-control" placeholder="Enter Purchase Price">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Selling Price</label>
+                                            <input asp-for="SellingPrice" type="text" class="validate form-control" placeholder="Enter Selling Price">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(function () {
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetStateByCustomerID",
+            data: { CustomerId: @Model.CustomerId},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+            print_state("State");
+            var state = "@Model.State";
+            var district = "@Model.District";
+            $("#State").val(state);
+            var option_str = document.getElementById("State");
+            print_city('District', option_str.selectedIndex);
+            $("#District").val(district);
+        });
+    </script>
+
+    </script>*@
+
+<!--new state-->

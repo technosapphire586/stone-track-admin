@@ -1,0 +1,15 @@
+*.cache
+*.txt
+*.editorconfig
+*.pdb
+*.props
+*.vs
+bin
+/obj/
+/Properties/
+/LegumizeAdmin.Models/bin/
+/LegumizeAdmin.Models/obj/
+/LegumizeAdmin.Services/bin/
+/LegumizeAdmin.Services/obj/
+/LegumizeAdminUI/obj/
+/LegumizeAdminUI/bin/

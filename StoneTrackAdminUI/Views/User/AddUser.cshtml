@@ -1,0 +1,178 @@
+﻿@model StoneTrackAdmin.Models.UserModel
+@{
+    ViewData["Title"] = "Add User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    ::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+    .show-password {
+        cursor: pointer;
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .copy-password {
+        cursor: pointer;
+        position: absolute;
+        right: 15%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cities.js"></script>
+<div class="container-fluid sb2">
+    <div class="row">
+        <div class="sb2-2">
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                    </li>
+                    <li class="active-bre">
+                        <a href="#"> Ui Form</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="/User/UserDetail"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to User</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp">
+                            <div class="inn-title">
+                                @if (Model.UserId > 0)
+                                {
+                                    <h4>Edit User Details</h4>
+                                }
+                                else
+                                {
+                                    <h4>Add User Details</h4>
+                                }
+                            </div>
+                            <form asp-action="AddUser" asp-controller="User" enctype="multipart/form-data" method="post">
+                                <div class="tab-inn">
+                                    <input asp-for="UserId" type="hidden" />
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="first_name" class="form-group">Name</label>
+                                            <input asp-for="Name" type="text" class="validate form-control" placeholder="Enter Name">
+                                            <span class="text-danger" asp-validation-for="Name"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="last_name" class="form-group">Mobile No</label>
+                                            <input asp-for="MobileNo" type="text" class="validate form-control" placeholder="Enter Mobile No">
+                                            <span class="text-danger" asp-validation-for="MobileNo"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">User Name</label>
+                                            <input asp-for="UserName" type="text" class="validate form-control" placeholder="Enter User Name">
+                                            <span class="text-danger" asp-validation-for="UserName"></span>
+                                            <p style="color:#ff0000">@TempData["ExistingUserName"]</p>
+
+                                        </div>
+                                        @if (Model.UserId > 0)
+                                        {
+                                            <div class="input-field col s6 ">
+                                                <label for="Gender" class="form-group">Password</label>
+                                                <input asp-for="PasswordView" type="text" class="validate form-control" placeholder=" Enter Password">
+                                                <span class="text-danger" asp-validation-for="PasswordView"></span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="input-field col s6 ">
+                                                <label for="Gender" class="form-group">Password</label>
+                                                <input asp-for="PasswordView" type="password" id="myInput" class="validate form-control" placeholder=" Enter Password">
+                                                <span class="show-password" onclick="togglePasswordVisibility()">
+                                                    <i class="fa fa-eye" id="toggleEye"></i>
+                                                </span>
+                                                <span class="copy-password" onclick="copyPassword()">
+                                                    <i class="fa fa-clone" id="toggleEye">Copy</i>
+                                                </span>
+                                                <span class="text-danger" asp-validation-for="PasswordView"></span>
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Email Address</label>
+                                            <input asp-for="EmailAddress" type="text" class="validate form-control" placeholder=" Enter Email Address">
+                                            <span class="text-danger" asp-validation-for="EmailAddress"></span>
+                                        </div>
+
+                                        <div class="input-field col s6">
+                                            <label for="userType" class="form-group">User Type</label>
+                                            <select asp-for="UserType" class="validate form-control">
+                                                <option value="">Select User Type</option>
+                                                <option value="Loader">Loader</option>
+                                                <option value="Gate Man">Gate Man</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @*<div class="row">
+                                    @if (Model.UserId <= 0)
+                                    {
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Profile Pic</label>
+                                            <input asp-for="ProfilePicData" type="file" class="validate form-control">
+                                        </div>
+                                    }
+                                </div>*@
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("myInput");
+        var toggleEye = document.getElementById("toggleEye");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleEye.classList.remove("fa-eye");
+            toggleEye.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleEye.classList.remove("fa-eye-slash");
+            toggleEye.classList.add("fa-eye");
+        }
+    }
+
+    function copyPassword() {
+        var copyText = document.getElementById("myInput");
+        navigator.clipboard.writeText(copyText.value);
+        alert("Password Copy Successfully");
+    }
+</script>
+

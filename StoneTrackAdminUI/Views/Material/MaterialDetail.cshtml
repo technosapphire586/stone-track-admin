@@ -1,0 +1,185 @@
+﻿@model List<StoneTrackAdmin.Models.MaterialModel>
+
+@{
+    ViewData["Title"] = "Material Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="sb2-2">
+    <div class="sb2-2-2">
+        <ul>
+            <li>
+                <a href="/Home/Index"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre">
+                <a href="/Material/MaterialDetail"> Material</a>
+            </li>
+        </ul>
+    </div>
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Materials</h4>
+                        <a href="@Url.Action("AddMaterial","Material")" class="btn btn-primary float-right" style="margin-left: 78%; margin-top: -34px;"> Add New Material </a>
+                    </div>
+
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-bordered nowrap" id="scroll-vert-hor">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>ID</th>
+                                        <th>Material Name</th>
+                                        <th>Purchase Price</th>
+                                        <th>Selling Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                               <span class="list-img"><i class="fa fa-cubes" aria-hidden="true"></i></span>
+                                            </td>
+                                            <td>@item.MaterialID</td>
+                                            <td>
+                                                @item.MaterialName
+                                            </td>
+                                            <td>@item.PurchasePrice</td>
+                                            <td>@item.SellingPrice</td>
+                                            <td>
+                                                <a href="@Url.Action("AddMaterial","Material",new {item.MaterialID})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>
+                                                <a onclick="DeleteProject('@item.MaterialID')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                                                @*<button type="button" class="btn btn-danger mr-auto" style="font-family: Montserrat; font-weight: 500" onclick="DeleteProject('@item.MaterialID')">Delete</button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <br /><br />
+                        <div class="row mt-5 ml-3 mb-5">
+                            <div class="exportList">
+                                <button onclick="downloadExcel()" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Save as XLSX</button>
+                                <button onclick="downloadPDF()" class="btn btn-success btn-sm"><i class="fa fa-file-pdf-o"></i> Save as PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new DataTable('#scroll-vert-hor', {
+        pagingType: 'simple_numbers'
+    });
+</script>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["SuccessMessage"]");
+            };
+    </script>
+}
+
+<script>
+    function DeleteProject(idd) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "/Material/DeleteMaterial",
+                        method: "get",
+                        contentType: "application/json",
+                        data: {
+                            MaterialID: idd
+                        },
+                        success: function (result) {
+                            if (result.status == true) {
+                                location.href = "/Material/MaterialDetail";
+                            }
+                            else {
+                                toastr.error(result.msg);
+                            }
+                        },
+                        error: function (err) {
+
+                            if (err.status == '401') {
+                                location.href = "/";
+                            }
+                        }
+                    });
+                } else {
+                    swal("Your data is safe!");
+                }
+            });
+    };
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+    function cloneTableWithoutEditDelete() {
+        debugger
+        const originalTable = document.getElementById('scroll-vert-hor');
+        const clonedTable = originalTable.cloneNode(true);
+        const clonedHeaderRow = clonedTable.querySelector('thead tr');
+        clonedHeaderRow.deleteCell(0);
+        clonedHeaderRow.deleteCell(-1);
+        clonedHeaderRow.deleteCell(-1);
+        const clonedBodyRows = clonedTable.querySelectorAll('tbody tr');
+        clonedBodyRows.forEach(row => {
+            row.deleteCell(0);
+            row.deleteCell(-1);
+            row.deleteCell(-1);
+        });
+        return clonedTable;
+    }
+
+    function downloadExcel() {
+        debugger
+        const table = cloneTableWithoutEditDelete();
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        saveAs(new Blob([wbout], { type: "application/octet-stream" }), 'Material_List.xlsx');
+    }
+
+    async function downloadPDF() {
+        const table = cloneTableWithoutEditDelete();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const headerText = 'Material List';
+        const textWidth = doc.getTextWidth(headerText);
+        const x = (pageWidth - textWidth) / 2;
+        doc.autoTable({
+            html: table,
+            didDrawPage: function (data) {
+                doc.text(headerText, x, 10);
+            },
+            margin: { top: 20 }
+        });
+        doc.save('Material_List.pdf');
+    }
+</script>

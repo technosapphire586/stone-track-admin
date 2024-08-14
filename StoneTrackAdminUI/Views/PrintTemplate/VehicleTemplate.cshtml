@@ -1,0 +1,246 @@
+﻿@model IList<StoneTrackAdmin.Models.VehicleExportExcelModel>
+@{
+    Layout = null;
+    int i = 1;
+    int j = 6;
+}
+<style>
+
+    @@media print {
+        html, body {
+            height: 100vh;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+    @@page {
+        size: auto; /* auto is the initial value */
+        /* this affects the margin in the printer settings */
+        /*margin: top right  bottom left */
+        margin: 5mm 15mm 5mm 15mm;
+    }
+
+    .pagebreak {
+        page-break-after: always;
+    }
+</style>
+<html>
+<body style="height: 297mm;width: 210mm;margin-top: 75px;margin-left: auto;margin-right: auto">
+    <div>
+        <b /><p style="color: #000000; font-size: 16pt; text-align: center; font-family: arial, sans-serif;">Vehicle list</p>
+        @*<p style="box-sizing: font-size: 12pt; text-align: center; font-family: arial, sans-serif; font-weight: 200;">Properties managed by your organization</p>*@
+    </div>
+
+    <div class="divider" style="height: 60px;">
+        <div class="divider" style="height: 60px;">
+        </div>
+
+        @foreach (var item in Model)
+        {
+            if (i == 6)
+            {
+                <div class="pagebreak" style="border: 1px solid #808080; border-radius: 20px; padding: 14px; margin-bottom: 20px;">
+                    @*<div>
+                        <div class="column">
+                            <p style="font-size: 12pt; text-align: left; font-family: arial, sans-serif; font-weight: 600;">@item.PropertyAddress</p>
+                        </div>
+                        <div class="column">
+                            <p style="font-size: 11pt; text-align: right; font-family: arial, sans-serif; font-weight: 200;">Contractor: @item.Contractor<br>Category: @item.Category</p>
+                        </div>
+                    </div>*@
+                    <table style="font-family: arial, sans-serif;border-collapse: collapse;width: 100%; font-size: 11pt;">
+                        <tr>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Id</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Vehicle No</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Name</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Mobile No</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Name</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Mobile No</th>
+                            @*<th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">SO</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Received day</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Start day</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Completion date</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">No acces date</th>
+                            <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Hand Over dste</th>*@
+                        </tr>
+                        <tr style="background-color: #fff">
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.ID</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.VehicleNo</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverName</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverMobileNo</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerName</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerMobileNo</td>
+                            @*<td style="border: 1px solid #fff;text-align: left; padding: 8px">@(item.ReceviedDate != null ? Convert.ToDateTime(item.ReceviedDate).ToString("dd/MM/yyyy") : "")</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@(item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("dd/MM/yyyy") : "")</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@(item.CompetionDate != null ? Convert.ToDateTime(item.CompetionDate).ToString("dd/MM/yyyy") : "")</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@(item.NoAccessDate != null ? Convert.ToDateTime(item.NoAccessDate).ToString("dd/MM/yyyy") : "")</td>
+                            <td style="border: 1px solid #fff;text-align: left; padding: 8px">@(item.HandOverDate != null ? Convert.ToDateTime(item.HandOverDate).ToString("dd/MM/yyyy") : "")</td>*@
+                        </tr>
+                    </table>
+                </div>
+
+            }
+            else
+            {
+                if (i - j == 7)
+                {
+                    j = i;
+                    <div class="pagebreak" style="border: 1px solid #808080; border-radius: 20px; padding: 14px; margin-bottom: 20px;">
+                       
+                        <table style="font-family: arial, sans-serif;border-collapse: collapse;width: 100%; font-size: 11pt;">
+                            <tr>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Id</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Vehicle No</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Name</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Mobile No</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Name</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Mobile No</th>
+                            </tr>
+                            <tr style="background-color: #fff">
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.ID</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.VehicleNo</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverName</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverMobileNo</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerName</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerMobileNo</td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div style="border: 1px solid #808080; border-radius: 20px; padding: 14px; margin-bottom: 20px;">
+                        <table style="font-family: arial, sans-serif;border-collapse: collapse;width: 100%; font-size: 11pt;">
+                            <tr>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Id</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Vehicle No</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Name</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Driver Mobile No</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Name</th>
+                                <th style="border: 1px solid #fff;text-align: left; padding: 8px;background: #f6f6f6;">Owner Mobile No</th>
+                            </tr>
+                            <tr style="background-color: #fff">
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.ID</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.VehicleNo</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverName</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.DriverMobileNo</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerName</td>
+                                <td style="border: 1px solid #fff;text-align: left; padding: 8px">@item.OwnerMobileNo</td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            }
+            <p style="display:none"> @(i++)</p>
+        }
+
+    </div>
+</body>
+
+<style>
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+</style>
+@*<style>
+    #propertyAdd {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    [class*="Need to Inspect's'"] {
+        color: #212529 !important;
+        background-color: #f6f6f6;
+    }
+
+    [class*="Inspected's'"] {
+        color: #212529 !important;
+        background-color: #fec000;
+    }
+
+    [class*="In Progress's'"] {
+        color: #212529 !important;
+        background-color: #d5fbdf;
+    }
+
+    [class*="Completed's'"] {
+        color: #212529 !important;
+        background-color: #92d050;
+    }
+
+    [class*="Need reinspect's'"] {
+        color: #212529 !important;
+        background-color: #a52a2a;
+    }
+
+    [class*="Cancelled's'"] {
+        color: #212529 !important;
+        background-color: #fc6fca;
+    }
+
+    [class*="Hand Over's'"] {
+        color: #212529 !important;
+        background-color: #00b0f0;
+    }
+
+    [class*="VO Received's'"] {
+        color: #212529 !important;
+        background-color: #c4d69a;
+    }
+
+    [class*="No Access's'"] {
+        color: #212529 !important;
+        background-color: #eb6e34;
+    }
+
+    [class*="Delay's'"] {
+        color: #212529 !important;
+        background-color: #ff0000;
+    }
+
+    [class*="Need to send VO's'"] {
+        color: #212529 !important;
+        background-color: #da9694;
+    }
+
+    [class*="VO sent's'"] {
+        color: #212529 !important;
+        background-color: #aeeb34;
+    }
+
+    [class*="Ready to start's'"] {
+        color: #212529 !important;
+        background-color: #add8e6;
+    }
+
+    [class*="Snagging to do's'"] {
+        color: #212529 !important;
+        background-color: #ffb400;
+    }
+
+    [class*="Outstanding work to do's'"] {
+        color: #212529 !important;
+        background-color: #6234eb;
+    }
+
+    [class*="Booked to start's'"] {
+        color: #212529 !important;
+        background-color: #eb348c;
+    }
+
+    [class*="Outstanding work to do's'"] {
+        color: #212529 !important;
+        background-color: #ffb400;
+    }
+
+    [class*="Waiting to agreed VO's'"] {
+        color: #212529 !important;
+        background-color: #8064a3;
+    }
+</style>*@
+</html>
+

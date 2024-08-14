@@ -1,0 +1,257 @@
+﻿@model StoneTrackAdmin.Models.InvoiceModel
+@{
+    ViewData["Title"] = "GenerateInvoice";
+    Layout = null;
+}
+
+
+<style>
+    .top_rw {
+        background-color: #f4f4f4;
+    }
+
+    button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .invoice-box {
+        max-width: 750px;
+        margin: auto;
+        padding: 10px;
+        border: 2px solid #000000;
+        border-radius: 15px;
+        /*box-shadow: 0 0 10px rgba(0, 0, 0, .15);*/
+        font-size: 5px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-bottom: solid 1px #ccc;
+        }
+
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: middle;
+            }
+
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+            }
+
+            .invoice-box table tr.top table td {
+                padding-bottom: 20px;
+                text-align: left;
+            }
+
+                .invoice-box table tr.top table td.title {
+                    font-size: 45px;
+                    line-height: 45px;
+                    color: #333;
+                }
+
+            .invoice-box table tr.information table td {
+                padding-bottom: 40px;
+            }
+
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.item td {
+                border-bottom: 1px solid #eee;
+            }
+
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+
+    .rtl {
+        direction: rtl;
+        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+
+        .rtl table {
+            text-align: right;
+        }
+
+            .rtl table tr td:nth-child(2) {
+                text-align: left;
+            }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+
+        <tr class="top">
+            <td colspan="5">
+                <table>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <img src="~/images/logo1.jpg" alt="Your Logo" width="100" height="100">
+                        </td>
+                        <td style="padding-left: 10px;">
+                            <b><h2 style="margin: 0;">R INSPRIO IT PRIVATE LIMITED </h2></b>
+                            GSTIN: 09AAHCR4278D1Z6<br>
+                            E-160, Sector 63, Gautambuddha Nagar, <br>
+                            Uttar Pradesh - 201301<br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="information">
+            <td colspan="3">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <b><h3>Buyer (Bill To), </h3> </b> 
+                            <b><h3> @Model.CustomerName </h3> </b> 
+                            Address: @Model.CustomerAddress <br>
+                            GST No: @Model.GSTNO<br>
+                        </td>
+                        <td>
+                            Invoice: RIIPL/24-25/@Model.OrderId <br>
+                            Date: @Model.UpdatedDate.ToString("dd MMM yyyy")<br>
+                            Vehicle No: @Model.VehicleNo<br>
+                            HSV/SAC: 25171090
+                            <br>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <td colspan="3">
+            <table cellspacing="0px" cellpadding="2px">
+                <tr class="heading">
+                    <td style="width:25%;">
+                        SI No.
+                    </td>
+                    <td style="width:30%; text-align:center;">
+                        DESCRIPTION OF GOODS
+                    </td>
+                    <td style="width:10%; text-align:center;">
+                        QTY.
+                    </td>
+                    <td style="width:10%; text-align:right;">
+                        PRICE (INR)
+                    </td>
+                    <td style="width:15%; text-align:right;">
+                        AMOUNT
+                    </td>
+                </tr>
+                <tr class="item">
+                    <td style="width:25%;">
+                        1
+                    </td>
+                    <td style="width:31%; text-align:center;">
+                        R Stone Chips - @Model.MaterialType
+                    </td>
+                    <td style="width:45%; text-align:center;">
+                         @Model.ActualWeight MT
+                    </td>
+                    <td style="width:10%; text-align:right;">
+                        ₹@Model.WeightPer
+                    </td>
+                    <td style="width:15%; text-align:right;">
+                        ₹@Model.ActualAmount
+                    </td>
+                </tr>
+
+
+                @*<tr class="item">
+                    <td style="width:25%;"> </td>
+                    <td style="width:10%; text-align:right;">
+                    </td>
+                    <td style="width:10%; text-align:right;">
+                    </td>
+                    <td style="width:15%; text-align:right;">
+                        ₹@Model.ActualAmount
+                    </td>
+                </tr>*@
+                <tr class="item">
+                    <td style="width:25%;"> </td>
+                    <td style="width:10%; text-align:center;"></td>
+                    <td style="width:10%; text-align:center;"></td>
+                    <td style="width:20%; text-align:right; padding-right:10px;">
+                        IGST (5%):<br>
+                        <b>Net Amount</b>
+                    </td>
+                    <td style="width:25%; text-align:right; padding-right:10px;">
+                        ₹@Model.GSTAmount<br>
+                        <b>₹@Model.NetAmount</b>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </table>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <tr>
+        <td colspan="3">
+            <table cellspacing="0px" cellpadding="2px">
+                <tr>
+                    <td width="50%">
+                        <b>Notice:</b>
+                    </td>
+                    <br>
+                    <td>
+                        Signature Of R INSPRIO <br>
+                        IT PRIVATE LIMITED
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <table cellspacing="0px" cellpadding="2px">
+                <tr>
+                    <td width="50%">
+                        <b>Terms:</b>
+                    </td>
+
+                    <td>
+                        Receiver Signature
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</div>
+
+ <script> 
+     $(document).ready(function () { 
+      window.print(); 
+       setTimeout(function () { 
+           window.close();
+       }, 1000);
+     }); 
+ </script> 
+ 

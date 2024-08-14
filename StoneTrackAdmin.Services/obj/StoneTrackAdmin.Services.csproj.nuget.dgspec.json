@@ -1,0 +1,162 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Services\\StoneTrackAdmin.Services.csproj": {}
+  },
+  "projects": {
+    "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\StoneTrackAdmin.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\StoneTrackAdmin.Models.csproj",
+        "projectName": "StoneTrackAdmin.Models",
+        "projectPath": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\StoneTrackAdmin.Models.csproj",
+        "packagesPath": "C:\\Users\\Manish Goud\\.nuget\\packages\\",
+        "outputPath": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Manish Goud\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Services\\StoneTrackAdmin.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Services\\StoneTrackAdmin.Services.csproj",
+        "projectName": "StoneTrackAdmin.Services",
+        "projectPath": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Services\\StoneTrackAdmin.Services.csproj",
+        "packagesPath": "C:\\Users\\Manish Goud\\.nuget\\packages\\",
+        "outputPath": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Manish Goud\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\StoneTrackAdmin.Models.csproj": {
+                "projectPath": "H:\\Stone Track All Project\\stone-track-admin\\StoneTrackAdmin.Models\\StoneTrackAdmin.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.11, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Microsoft.AspNetCore.Hosting.Server.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/images/fav.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Quicksand:300,400,500" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/mob.css" rel="stylesheet">
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/materialize.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/cities.js"></script>
+    <script src="~/js/materialize.min.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/ajaxMethods.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <style>
+        /* Add CSS for submenu */
+        .submenu {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li:hover > .submenu {
+            display: block;
+        }
+
+        li {
+            position: relative;
+        }
+
+        .submenu li {
+            position: relative;
+        }
+
+        .submenu a {
+            text-decoration: none;
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+
+    <div class="container-fluid sb1">
+        <div class="row">
+            <!--== LOGO ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
+                <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
+                @*<a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>*@
+                <a asp-controller="Home" asp-action="Index" class="logo">
+                    <img src="~/images/logo1.jpg" alt="" />
+                </a>
+            </div>
+            <!--== SEARCH ==-->
+            <div class="col-md-6 col-sm-6 mob-hide">
+                <form class="app-search">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+            </div>
+            <!--== NOTIFICATION ==-->
+            <!--== MY ACCCOUNT ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6">
+                <!-- Dropdown Trigger -->
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'>
+                    <img src="~/images/profile.png" alt="" />My Account <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+
+                <!-- Dropdown Structure -->
+                <ul id='top-menu' class='dropdown-content top-menu-sty'>
+                    <li>
+                        <a href="/Home/Index" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Admin </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="CustomerDetail" class="waves-effect"><i class="fa fa-list-ul" aria-hidden="true"></i> customers</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Orders" class="waves-effect"><i class="fa fa-building-o" aria-hidden="true"></i> orders</a>
+                    </li>
+                    <li>
+                        <a asp-action="LogOut" asp-controller="Account" class="waves-effect"><i class="fa fa-umbrella" aria-hidden="true"></i> Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--== BODY CONTNAINER ==-->
+
+    <div class="container-fluid sb2">
+        <div class="row">
+            <div class="sb2-1">
+                <!--== USER INFO ==-->
+                <div class="sb2-12">
+                    <ul>
+                        <li>
+                            <img src="~/images/logo1.jpg" alt="">
+                        </li>
+                        <li>
+                            <h5>Admin <span> Stone Track</span></h5>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+                <!--== LEFT MENU ==-->
+                <div class="sb2-13">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" class="master-link "><i class="fa fa-angle-double-down" aria-hidden="true"></i>Master</a>
+                            <ul class="submenu">
+                                <li><a asp-area="" asp-controller="Customer" asp-action="CustomerDetail"><i class="fa fa-user" aria-hidden="true"></i>Customer</a></li>
+                                <li><a asp-area="" asp-controller="Vehicle" asp-action="VehicleDetail"><i class="fa fa-truck" aria-hidden="true"></i>Vehicle</a></li>
+                                <li><a asp-area="" asp-controller="Material" asp-action="MaterialDetail"><i class="fa fa-cubes" aria-hidden="true"></i>Material</a></li>
+                                <li><a asp-area="" asp-controller="User" asp-action="UserDetail"><i class="fa fa-users" aria-hidden="true"></i>Users</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Orders" class="menu"><i class="fa fa-list-ul" aria-hidden="true"></i>Orders</a>
+                        </li>
+                        <li>
+                            <a><i class=" fa fa-file-text-o" aria-hidden="true"></i>Report</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <script>
+        document.querySelector('.master-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            var submenu = this.nextElementSibling;
+            if (submenu.style.display === 'block') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

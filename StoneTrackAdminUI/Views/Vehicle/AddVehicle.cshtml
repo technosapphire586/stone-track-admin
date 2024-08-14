@@ -1,0 +1,114 @@
+﻿@model StoneTrackAdmin.Models.VehicleModel
+
+@{
+    ViewData["Title"] = "Add Vehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cities.js"></script>
+<div class="container-fluid sb2">
+    <div class="row">
+        <div class="sb2-2">
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                    </li>
+                    <li class="active-bre">
+                        <a href="#"> Ui Form</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="/Vehicle/VehicleDetail"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to Vehicle</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp">
+                            <div class="inn-title">
+                                @if (Model.ID > 0)
+                                {
+                                    <h4>Edit Vehicle Details</h4>
+                                }
+                                else
+                                {
+                                    <h4>Add Vehicle Details</h4>
+                                }
+
+                            </div>
+                            <form asp-action="AddVehicle" asp-controller="Vehicle" method="post">
+                                <div class="tab-inn">
+                                    <input asp-for="ID" type="hidden" />
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="first_name" class="form-group">Vehicle No</label>
+                                            <input asp-for="VehicleNo" type="text" class="validate form-control" placeholder="Enter Vehicle No">
+                                            <span class="text-danger" asp-validation-for="VehicleNo"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="last_name" class="form-group">Driver Name</label>
+                                            <input asp-for="DriverName" type="text" class="validate form-control" placeholder="Enter Driver Name">
+                                            <span class="text-danger" asp-validation-for="DriverName"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Driver Mobile No</label>
+                                            <input asp-for="DriverMobileNo" type="text" class="validate form-control" placeholder="Enter Driver Mobile No">
+                                            <span class="text-danger" asp-validation-for="DriverMobileNo"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="Gender" class="form-group">Owner Name</label>
+                                            <input asp-for="OwnerName" type="text" class="validate form-control" placeholder="Enter Owner Name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Owner Mobile No</label>
+                                            <input asp-for="OwnerMobileNo" type="text" class="validate form-control" placeholder=" Enter Owner Mobile No">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(function () {
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/Home/GetStateByCustomerID",
+            data: { CustomerId: @Model.CustomerId},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+            print_state("State");
+            var state = "@Model.State";
+            var district = "@Model.District";
+            $("#State").val(state);
+            var option_str = document.getElementById("State");
+            print_city('District', option_str.selectedIndex);
+            $("#District").val(district);
+        });
+    </script>
+
+    </script>*@
+
+<!--new state-->

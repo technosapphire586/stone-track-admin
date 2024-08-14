@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Affidavits\**" />
+    <EmbeddedResource Remove="Affidavits\**" />
+    <None Remove="Affidavits\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.11" />
+    <PackageReference Include="MailKit" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.32" />
+    <PackageReference Include="MimeKit" Version="4.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StoneTrackAdmin.Models\StoneTrackAdmin.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ExportExcelServices\" />
+  </ItemGroup>
+
+</Project>

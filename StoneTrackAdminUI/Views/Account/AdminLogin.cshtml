@@ -1,0 +1,84 @@
+﻿@model StoneTrackAdmin.Models.LoginModel
+@{
+    Layout = "";
+}
+
+<link href="~/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/css/style.css" rel="stylesheet">
+<link href="~/css/mob.css" rel="stylesheet">
+<link href="~/css/bootstrap.css" rel="stylesheet">
+<link href="~/css/materialize.css" rel="stylesheet">
+
+<style>
+    ::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+    .show-password {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>
+
+<div class="blog-login">
+    <div class="blog-login-in">
+        <form asp-action="AdminLogin" asp-controller="Account" method="post">
+            <img src="~/images/logo1.jpg" style="width:130px;" />
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="first_name1">User Name</label>
+                    <input asp-for="UserName" id="first_name1" type="text" class="validate">
+                    <p style="color:#ff0000">@ViewData["InvalidEmail"]</p>
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" style="position: relative;">
+                    <label for="last_name">Password</label>
+                    <input asp-for="Password" type="password" class="validate" id="myInput">
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                    <span class="show-password" onclick="togglePasswordVisibility()">
+                        <i class="fa fa-eye" id="toggleEye"></i>
+                    </span>
+                    <p style="color:#ff0000">@ViewData["InvalidPassword"]</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="waves-effect waves-light btn-large btn-log-in" type="submit">Login</button>
+                </div>
+            </div>
+            <a href="forgot.html" class="for-pass">Forgot Password?</a>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="~/js/cities.js"></script>
+<script src="~/js/materialize.min.js"></script>
+<script src="~/js/custom.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/ajaxMethods.js"></script>
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("myInput");
+        var toggleEye = document.getElementById("toggleEye");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleEye.classList.remove("fa-eye");
+            toggleEye.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleEye.classList.remove("fa-eye-slash");
+            toggleEye.classList.add("fa-eye");
+        }
+    }
+</script>

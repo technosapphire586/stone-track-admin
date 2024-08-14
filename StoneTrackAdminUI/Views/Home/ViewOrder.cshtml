@@ -1,0 +1,143 @@
+﻿@model StoneTrackAdmin.Models.OrderDetailsModel
+@{
+    ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cities.js"></script>
+<div class="container-fluid sb2">
+    <div class="row">
+        <div class="sb2-2">
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                    </li>
+                    <li class="active-bre">
+                        <a href="#"> Ui Form</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-2">
+                <ul>
+                    <li>
+                        <a href="/Home/Orders"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to Order</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sb2-2-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp">
+                            <div class="inn-title">
+                                <h4>View Order Details</h4>
+                            </div>
+                            <form>
+                                <div class="tab-inn">
+                                    <input asp-for="OrderId" type="hidden" />
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="first_name" class="form-group">Vehicle No</label>
+                                            <input asp-for="VehicleNo" type="text" class="validate form-control">
+                                            <span class="text-danger" asp-validation-for="VehicleNo"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="last_name" class="form-group">Driver Name</label>
+                                            <input asp-for="DriverName" type="text" class="validate form-control">
+                                            <span class="text-danger" asp-validation-for="DriverName"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Driver Mobile No</label>
+                                            <input asp-for="DriverMobileNo" type="text" class="validate form-control">
+                                            <span class="text-danger" asp-validation-for="DriverMobileNo"></span>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="Gender" class="form-group">Material Type</label>
+                                            <input asp-for="MaterialType" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Weight</label>
+                                            <input asp-for="Weight" type="text" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Amount</label>
+                                            <input asp-for="Amount" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Payment Status</label>
+                                            <input asp-for="PaymentStatus" type="text" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Payment Mode</label>
+                                            <input asp-for="PaymentMode" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Customer Name</label>
+                                            <input asp-for="CustomerName" type="text" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Customer Address</label>
+                                            <input asp-for="CustomerAddress" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Actual Weight</label>
+                                            <input asp-for="ActualWeight" type="text" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Net Amount</label>
+                                            <input asp-for="NetAmount" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Invoice No</label>
+                                            <input asp-for="InvoiceNo" type="text" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Order Status</label>
+                                            <input asp-for="OrderStatus" type="text" class="validate form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Order Date</label>
+                                            <input asp-for="OrderDate" type="date" class="validate form-control">
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Entry Slip Image</label>
+                                            <a href="@Model.EntrySlipImageUrl" target="_blank" class="img-thumbnail">Download</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Payment Slip Image</label>
+                                            <a href="@Model.PaymentSlipUrl" target="_blank" class="img-thumbnail">Download</a>
+                                        </div>
+                                        <div class="input-field col s6 ">
+                                            <label for="phone" class="form-group">Invoice Image</label>
+                                            <a href="@Model.InvoiceImageUrl" target="_blank" class="img-thumbnail">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
