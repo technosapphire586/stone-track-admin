@@ -164,7 +164,7 @@
                     <td style="width:25%;">
                         1
                     </td>
-                    <td style="width:31%; text-align:center;">
+                    <td style="width:40%; text-align:center;">
                         R Stone Chips - @Model.MaterialType
                     </td>
                     <td style="width:45%; text-align:center;">
@@ -190,14 +190,14 @@
                     </td>
                 </tr>*@
                 <tr class="item">
-                    <td style="width:25%;"> </td>
-                    <td style="width:10%; text-align:center;"></td>
-                    <td style="width:10%; text-align:center;"></td>
-                    <td style="width:20%; text-align:right; padding-right:10px;">
+                    <td style="width:15%;"> </td>
+                    <td style="width:5%; text-align:center;"></td>
+                    <td style="width:5%; text-align:center;"></td>
+                    <td style="width:45%; text-align:right; padding-right:10px;">
                         IGST (5%):<br>
                         <b>Net Amount</b>
                     </td>
-                    <td style="width:25%; text-align:right; padding-right:10px;">
+                    <td style="width:30%; text-align:right; padding-right:10px;">
                         ₹@Model.GSTAmount<br>
                         <b>₹@Model.NetAmount</b>
                     </td>
@@ -246,12 +246,12 @@
 
 </div>
 
- <script> 
+ @*<script> 
      $(document).ready(function () { 
       window.print(); 
        setTimeout(function () { 
            window.close();
        }, 1000);
      }); 
- </script> 
+ </script>*@ 
  
