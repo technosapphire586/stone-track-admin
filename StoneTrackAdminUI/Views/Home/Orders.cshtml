@@ -1,4 +1,4 @@
-﻿@model List<StoneTrackAdmin.Models.OrderDetailsModel>
+﻿@model StoneTrackAdmin.Models.OrderDetailsViewModel
 @{
     ViewData["Title"] = "Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -74,7 +74,6 @@
     }
 </style>
 
-<div class="sb2-2">
     <div class="sb2-2-2">
         <ul>
             <li>
@@ -86,78 +85,139 @@
         </ul>
     </div>
 
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Orders</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <div class="table-responsive table-desi">
-                            <table class="table table-bordered nowrap" id="scroll-vert-hor">
-                                <thead>
-                                    <tr>
-                                        <th>Order</th>
-                                        <th>Order No</th>
-                                        <th>Order Date</th>
-                                        <th>Vehicle No</th>
-                                        <th>Driver Name</th>
-                                        <th>Material Type</th>
-                                        <th>Weight</th>
-                                        <th>Amount</th>
-                                        <th>Customer Name</th>
-                                        <th>Customer Address</th>
-                                        <th>GST No</th>
-                                        <th>Invoice No</th>
-                                        <th>Order Status</th>
-                                        <th>View</th>
-                                        <th>Delete</th>
-                                        <th>Download Invoice</th>
-                                    </tr>
-                                </thead>
+    <div class="db-2 ul li">
+        <div class="ad-v2-hom-info">
+            <div class="ad-v2-hom-info-inn">
+                <ul>
+                    <li>
+                        <a href="/Home/Orders?Status=Dispatched">
+                            <div class="ad-hom-box ad-hom-box-4">
+                                <span class="ad-hom-col-com ad-hom-col-6"><i class="fa fa-first-order"></i></span>
+                                <div class="ad-hom-view-com">
+                                    <p><b>Dispatched Orders</b></p>
+                                    <h3 style="color:#000000">@Model.CountDispatchedOrder</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
 
-                                <tbody>
-                                   @foreach (var obj in Model)
-                                    {
-                                    <tr>
-                                        <td class="@obj.OrderStatus's'"><span class="list-img"><img src="~/listing/1.jpg" alt=""></span></td>
-                                        <td class="@obj.OrderStatus's'">@obj.OrderId</td>
-                                        <td class="@obj.OrderStatus's'">@obj.OrderDate.ToString("MMM dd yyyy  hh:mm tt")</td>
-                                        <td class="@obj.OrderStatus's'">@obj.VehicleNo</td>
-                                        <td class="@obj.OrderStatus's'">@obj.DriverName</td>
-                                        <td class="@obj.OrderStatus's'">@obj.MaterialType</td>
-                                        <td class="@obj.OrderStatus's'">@obj.Weight</td>
-                                        <td class="@obj.OrderStatus's'">@obj.Amount</td>
-                                        <td class="@obj.OrderStatus's'">@obj.CustomerName</td>
-                                        <td class="@obj.OrderStatus's'">@obj.CustomerAddress</td>
-                                        <td class="@obj.OrderStatus's'">@obj.GSTNO</td>
-                                        <td class="@obj.OrderStatus's'">@obj.InvoiceNo</td>
-                                        <td class="@obj.OrderStatus's'">@obj.OrderStatus</td>
-                                        <td class="@obj.OrderStatus's'">
-                                            <a href="@Url.Action("ViewOrder","Home",new {obj.OrderId})"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        </td>
-                                        <td class="@obj.OrderStatus's'">
-                                            <a onclick="DeleteOrders('@obj.OrderId')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                        </td>
-                                       
-                                        <td class="@obj.OrderStatus's'">
-                                           @if (obj.OrderStatus == "Dispatched")
-                                           {
-                                               <a href="@Url.Action("GenerateInvoice", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                           }
-                                        </td>
-                                        
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
+                    <li>
+                        <a href="/Home/Orders?Status=Loaded">
+                            <div class="ad-hom-box ad-hom-box-1">
+                                <span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-bar-chart"></i></span>
+                                <div class="ad-hom-view-com">
+                                    <p><b>Loaded Orders</b></p>
+                                    <h3 style="color:#000000">@Model.CountLoadedOrder</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Home/Orders?Status=Vehicle In">
+                            <div class="ad-hom-box ad-hom-box-3">
+                                <span class="ad-hom-col-com ad-hom-col-3"><i class="fa fa-first-order"></i></span>
+                                <div class="ad-hom-view-com">
+                                    <p><b>Vehicle In</b></p>
+                                    <h3 style="color:#000000">@Model.CountVehicleInOrder</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/Home/Orders?Status=New">
+                            <div class="ad-hom-box ad-hom-box-5">
+                                <span class="ad-hom-col-com ad-hom-col-4"><i class="fa fa-tasks"></i></span>
+                                <div class="ad-hom-view-com">
+                                    <p><b>New Orders</b></p>
+                                    <h3 style="color:#000000">@Model.CountNewOrder</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="sb2-2">
+        <div class="sb2-2-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box-inn-sp">
+                        <div class="inn-title">
+                            <h4>Orders</h4>
                         </div>
-                        <br /><br />
-                        <div class="row mt-5 ml-3 mb-5">
-                            <div class="exportList">
-                                <button onclick="downloadExcel()" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Save as XLSX</button>
-                                <button onclick="downloadPDF()" class="btn btn-success btn-sm"><i class="fa fa-file-pdf-o"></i> Save as PDF</button>
+                        <div class="tab-inn">
+                            <div class="table-responsive table-desi">
+                                <table class="table table-bordered nowrap" id="scroll-vert-hor">
+                                    <thead>
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>Order No</th>
+                                            <th>Order Date</th>
+                                            <th>Vehicle No</th>
+                                            <th>Driver Name</th>
+                                            <th>Material Type</th>
+                                            <th>Weight</th>
+                                            <th>Amount</th>
+                                            <th>Customer Name</th>
+                                            <th>Customer Address</th>
+                                            <th>GST No</th>
+                                            <th>Invoice No</th>
+                                            <th>Order Status</th>
+                                            <th>View</th>
+                                            <th>Delete</th>
+                                            <th>Download Invoice</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var obj in Model.OrderDetailsList)
+                                        {
+                                            <tr>
+                                                <td class="@obj.OrderStatus's'"><span class="list-img"><img src="~/listing/1.jpg" alt=""></span></td>
+                                                <td class="@obj.OrderStatus's'">@obj.OrderId</td>
+                                                <td class="@obj.OrderStatus's'">@obj.OrderDate.ToString("MMM dd yyyy  hh:mm tt")</td>
+                                                <td class="@obj.OrderStatus's'">@obj.VehicleNo</td>
+                                                <td class="@obj.OrderStatus's'">@obj.DriverName</td>
+                                                <td class="@obj.OrderStatus's'">@obj.MaterialType</td>
+                                                <td class="@obj.OrderStatus's'">@obj.Weight</td>
+                                                <td class="@obj.OrderStatus's'">@obj.Amount</td>
+                                                <td class="@obj.OrderStatus's'">@obj.CustomerName</td>
+                                                <td class="@obj.OrderStatus's'">@obj.CustomerAddress</td>
+                                                <td class="@obj.OrderStatus's'">@obj.GSTNO</td>
+                                                <td class="@obj.OrderStatus's'">@obj.InvoiceNo</td>
+                                                <td class="@obj.OrderStatus's'">@obj.OrderStatus</td>
+                                                <td class="@obj.OrderStatus's'">
+                                                    <a href="@Url.Action("ViewOrder","Home",new {obj.OrderId})"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td class="@obj.OrderStatus's'">
+                                                    <a onclick="DeleteOrders('@obj.OrderId')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+
+                                                <td class="@obj.OrderStatus's'">
+                                                    @if (obj.OrderStatus == "Dispatched")
+                                                    {
+                                                        <a href="@Url.Action("GenerateInvoice", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                    }
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br /><br />
+                            <div class="row mt-5 ml-3 mb-5">
+                                <div class="exportList">
+                                    <button onclick="downloadExcel()" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Save as XLSX</button>
+                                    <button onclick="downloadPDF()" class="btn btn-success btn-sm"><i class="fa fa-file-pdf-o"></i> Save as PDF</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,98 +225,96 @@
             </div>
         </div>
     </div>
-</div>
+        <script>
+            new DataTable('#scroll-vert-hor', {
+                pagingType: 'simple_numbers'
+            });
+        </script>
 
-<script>
-    new DataTable('#scroll-vert-hor', {
-        pagingType: 'simple_numbers'
-    });
-</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
-<script>
-    function cloneTableWithoutEditDelete() {
-        debugger
-        const originalTable = document.getElementById('scroll-vert-hor');
-        const clonedTable = originalTable.cloneNode(true);
-        const clonedHeaderRow = clonedTable.querySelector('thead tr');
-        clonedHeaderRow.deleteCell(0);
-        clonedHeaderRow.deleteCell(-1);
-        const clonedBodyRows = clonedTable.querySelectorAll('tbody tr');
-        clonedBodyRows.forEach(row => {
-            row.deleteCell(0);
-            row.deleteCell(-1);
-        });
-        return clonedTable;
-    }
-
-    function downloadExcel() {
-        debugger
-        const table = cloneTableWithoutEditDelete();
-        const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-        saveAs(new Blob([wbout], { type: "application/octet-stream" }), 'Order_List.xlsx');
-    }
-
-    async function downloadPDF() {
-        const table = cloneTableWithoutEditDelete();
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const headerText = 'Order List';
-        const textWidth = doc.getTextWidth(headerText);
-        const x = (pageWidth - textWidth) / 2;
-        doc.autoTable({
-            html: table,
-            didDrawPage: function (data) {
-                doc.text(headerText, x, 10);
-            },
-            margin: { top: 20 }
-        });
-        doc.save('Order_List.pdf');
-    }
-</script>
-<script>
-    function DeleteOrders(idd) {
-        debugger
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this data!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
+        <script>
+            function cloneTableWithoutEditDelete() {
                 debugger
-                if (willDelete) {
-                    $.ajax({
-                        url: "/Home/DeleteOrders",
-                        method: "get",
-                        contentType: "application/json",
-                        data: {
-                            OrderId: idd
-                        },
-                        success: function (result) {
-                            if (result.status == true) {
-                                location.href = "/Home/Orders";
-                            }
-                            else {
-                                toastr.error(result.msg);
-                            }
-                        },
-                        error: function (err) {
-                            if (err.status == '401') {
-                                location.href = "/";
-                            }
+                const originalTable = document.getElementById('scroll-vert-hor');
+                const clonedTable = originalTable.cloneNode(true);
+                const clonedHeaderRow = clonedTable.querySelector('thead tr');
+                clonedHeaderRow.deleteCell(0);
+                clonedHeaderRow.deleteCell(-1);
+                const clonedBodyRows = clonedTable.querySelectorAll('tbody tr');
+                clonedBodyRows.forEach(row => {
+                    row.deleteCell(0);
+                    row.deleteCell(-1);
+                });
+                return clonedTable;
+            }
+
+            function downloadExcel() {
+                debugger
+                const table = cloneTableWithoutEditDelete();
+                const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+                const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+                saveAs(new Blob([wbout], { type: "application/octet-stream" }), 'Order_List.xlsx');
+            }
+
+            async function downloadPDF() {
+                const table = cloneTableWithoutEditDelete();
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const headerText = 'Order List';
+                const textWidth = doc.getTextWidth(headerText);
+                const x = (pageWidth - textWidth) / 2;
+                doc.autoTable({
+                    html: table,
+                    didDrawPage: function (data) {
+                        doc.text(headerText, x, 10);
+                    },
+                    margin: { top: 20 }
+                });
+                doc.save('Order_List.pdf');
+            }
+        </script>
+        <script>
+            function DeleteOrders(idd) {
+                debugger
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        debugger
+                        if (willDelete) {
+                            $.ajax({
+                                url: "/Home/DeleteOrders",
+                                method: "get",
+                                contentType: "application/json",
+                                data: {
+                                    OrderId: idd
+                                },
+                                success: function (result) {
+                                    if (result.status == true) {
+                                        location.href = "/Home/Orders";
+                                    }
+                                    else {
+                                        toastr.error(result.msg);
+                                    }
+                                },
+                                error: function (err) {
+                                    if (err.status == '401') {
+                                        location.href = "/";
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Your data is safe!");
                         }
                     });
-                } else {
-                    swal("Your data is safe!");
-                }
-            });
-    };
-</script>
+            };
+        </script>

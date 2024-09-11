@@ -142,6 +142,25 @@ namespace StoneTrackAdmin.Services
             }
         }
 
+        public async Task<List<OrderDetailsModel>> StatusOrderDetails(string Status)
+        {
+            try
+            {
+                string query = string.Empty;
+                var parameters = new DynamicParameters();
+                parameters.Add("@Status", Status);
+                query = "select OrderId,VehicleNo,DriverName,DriverMobileNo,MaterialType,GSTNO,Weight,Amount,PaymentStatus,PaymentMode,EntrySlipImageUrl," +
+                    " PaymentSlipUrl,CustomerName,CustomerAddress,ActualWeight,NetAmount,InvoiceNo,InvoiceImageUrl,OrderStatus,OrderDate, CreatedBy " +
+                    " from Orders where IsActive=1 and IsDeleted=0 and OrderStatus=@Status Order by OrderId desc";
+                var data = await _dapper.GetAllAsync<OrderDetailsModel>(query, parameters);
+                return data.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<OrderDetailsModel> OrderDetailsByOrderId(int OrderId)
         {
             try
@@ -185,6 +204,21 @@ namespace StoneTrackAdmin.Services
                     "(select COUNT(OrderId) from Orders where OrderStatus='Vehicle In' and IsActive=1 and IsDeleted=0 and CAST(OrderDate AS DATE) = CAST(GETDATE() AS DATE)) as CountVehicleInOrder," +
                     "(select COUNT(OrderId) from Orders where OrderStatus='Loaded' and IsActive=1 and IsDeleted=0 and CAST(OrderDate AS DATE) = CAST(GETDATE() AS DATE)) as CountLoadedOrder," +
                     "(select COUNT(OrderId) from Orders where OrderStatus='Dispatched' and IsActive=1 and IsDeleted=0 and CAST(OrderDate AS DATE) = CAST(GETDATE() AS DATE)) as CountDispatchedOrder ";
+                var data = await _dapper.GetFirstOrDefaultAsync<OrderDetailsCountModel>(query);
+                return data;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        public async Task<OrderDetailsCountModel> CountTotaOrder()
+        {
+            try
+            {
+                string query = string.Empty;
+                query = " select " +
+                    "(select COUNT(OrderId) from Orders where OrderStatus='New' and IsActive=1 and IsDeleted=0 ) as CountNewOrder," +
+                    "(select COUNT(OrderId) from Orders where OrderStatus='Vehicle In' and IsActive=1 and IsDeleted=0 ) as CountVehicleInOrder," +
+                    "(select COUNT(OrderId) from Orders where OrderStatus='Loaded' and IsActive=1 and IsDeleted=0 ) as CountLoadedOrder," +
+                    "(select COUNT(OrderId) from Orders where OrderStatus='Dispatched' and IsActive=1 and IsDeleted=0 ) as CountDispatchedOrder ";
                 var data = await _dapper.GetFirstOrDefaultAsync<OrderDetailsCountModel>(query);
                 return data;
             }

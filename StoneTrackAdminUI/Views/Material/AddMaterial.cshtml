@@ -46,7 +46,9 @@
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <label for="userType" class="form-group">Material Name</label>
-                                            <select asp-for="MaterialName" class="validate form-control">
+                                            <input asp-for="MaterialName" type="text" class="validate form-control" placeholder="Enter Material Name">
+                                        
+                                           @*<select asp-for="MaterialName" class="validate form-control">
                                                 <option value="">Select Material Name</option>
                                                 <option value="10 MM">10 MM</option>
                                                 <option value="20 MM">20 MM</option>
@@ -55,7 +57,7 @@
                                                 <option value="60 MM">60 MM</option>
                                                 <option value="GSB">GSB</option>
                                                 <option value="DUST">DUST</option>
-                                            </select>
+                                            </select>*@ 
                                             <span class="text-danger" asp-validation-for="MaterialName"></span>
                                         </div>
                                         <div class="input-field col s6 ">

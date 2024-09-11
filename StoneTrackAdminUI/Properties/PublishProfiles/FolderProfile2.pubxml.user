@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>H:\Stone Track All Project\Stone Track Admin Publish</_PublishTargetUrl>
+    <History>True|2024-09-11T06:59:19.1348147Z;True|2024-09-03T16:07:53.0126152+05:30;True|2024-09-03T16:05:49.7865597+05:30;True|2024-09-03T16:03:48.0570762+05:30;True|2024-08-28T22:08:12.3560265+05:30;</History>
+  </PropertyGroup>
+</Project>

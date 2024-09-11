@@ -64,9 +64,28 @@ namespace StoneTrackApi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Orders()
+        public async Task<IActionResult> Orders(string Status = null)
         {
-            var result = await _customer.OrderDetails();
+            IList<OrderDetailsModel> OrderList = new List<OrderDetailsModel>();
+            if(Status == null)
+            {
+                OrderList = await _customer.OrderDetails();
+            }
+            else
+            {
+                OrderList = await _customer.StatusOrderDetails(Status);
+            }
+
+            var Countresult = await _customer.CountTotaOrder();
+
+            OrderDetailsViewModel result = new OrderDetailsViewModel()
+            {
+                CountNewOrder = Countresult.CountNewOrder,
+                CountVehicleInOrder = Countresult.CountVehicleInOrder,
+                CountLoadedOrder = Countresult.CountLoadedOrder,
+                CountDispatchedOrder = Countresult.CountDispatchedOrder,
+                OrderDetailsList = (List<OrderDetailsModel>)OrderList
+            };
             return View(result);
         }
 

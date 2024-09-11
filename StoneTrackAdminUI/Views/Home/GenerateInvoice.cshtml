@@ -6,6 +6,12 @@
 
 
 <style>
+    @@media print {
+        @@page {
+            margin:0;
+        }
+    }
+
     .top_rw {
         background-color: #f4f4f4;
     }
@@ -246,12 +252,12 @@
 
 </div>
 
- @*<script> 
+ <script> 
      $(document).ready(function () { 
       window.print(); 
        setTimeout(function () { 
            window.close();
        }, 1000);
      }); 
- </script>*@ 
+ </script>
  

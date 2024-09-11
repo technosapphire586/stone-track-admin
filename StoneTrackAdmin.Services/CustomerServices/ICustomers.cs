@@ -18,6 +18,8 @@ namespace StoneTrackAdmin.Services
         Task<OrderDetailsCountModel> CountOrder();
         Task DeleteOrdersDetails(int OrderId);
         Task<InvoiceModel> GenerateInvoiceData(int OrderId);
+        Task<OrderDetailsCountModel> CountTotaOrder();
+        Task<List<OrderDetailsModel>> StatusOrderDetails(string Status);
 
         //Task<List<CustomerDetailsModel>> CustomerDetails();
         //Task<ViewCustomerDetailsModel> ViewCustomerDetails(int CustomerId);
