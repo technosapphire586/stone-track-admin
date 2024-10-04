@@ -121,6 +121,14 @@ namespace StoneTrackApi.Controllers
             return View(result);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DownloadEntrySlip(int OrderId)
+        {
+            var result = await _customer.DownloadEntrySlip(OrderId);
+            return View(result);
+        }
+
+
 
         //        [HttpGet]
         //        public async Task<IActionResult> CustomerView(int CustomerId)
@@ -129,11 +137,12 @@ namespace StoneTrackApi.Controllers
 
         //            return View(result);
         //        }
+
+
         //        [HttpGet]
         //        public async Task<IActionResult> DeleteCustomer(int CustomerId)
         //        {
         //            await _customer.DeleteCustomerDetails(CustomerId);
-
         //            return RedirectToAction("CustomerDetail", "Home");
         //        }
 
@@ -141,7 +150,6 @@ namespace StoneTrackApi.Controllers
         //        public async Task<IActionResult> CustomerEdit(int CustomerId)
         //        {
         //            var result = await _customer.EditCustomerDetails(CustomerId);
-
         //            return View(result);
         //        }
 
@@ -152,8 +160,6 @@ namespace StoneTrackApi.Controllers
         //            return RedirectToAction("CustomerDetail", "Home");
         //        }
 
-
-
         //        [HttpPost]
         //        public async Task<IActionResult> UpdateOrderStatus(UpdateOrderStatusModel Viewmodel)
         //        {
@@ -161,7 +167,6 @@ namespace StoneTrackApi.Controllers
         //            {
         //                await _customer.UpdateOrderStatus(Viewmodel);
         //                //GenrateEmailUploadDoucmentTamplet
-
         //                return Json("Status Updated");
         //            }
         //            catch (Exception ex)
@@ -169,6 +174,7 @@ namespace StoneTrackApi.Controllers
         //                return Json("Something went wrong", ex);
         //            }
         //        }
+
 
         //        [HttpPost]
         //        public async Task<IActionResult> UpdatePaymentStatus(UpdateOrderStatusModel Viewmodel)
@@ -195,15 +201,15 @@ namespace StoneTrackApi.Controllers
         //            }
         //        }
 
+
+
         //        [HttpPost]
         //        public async Task<IActionResult> UploadOrderDoucment([FromForm] UpdateOrderStatusModel Viewmodel)
         //        {
         //            try
         //            {
         //                Viewmodel.UpdateDoucmentUrl = Viewmodel.UpdateDoucment != null ? await _basic.UploadFile(Viewmodel.UpdateDoucment, "UploadDoucment") : null;
-
         //                await _customer.UploadDoucment(Viewmodel);
-
         //                var result = await _customer.GetEmailData(Viewmodel.OrderId);
         //                if (result != null)
         //                {

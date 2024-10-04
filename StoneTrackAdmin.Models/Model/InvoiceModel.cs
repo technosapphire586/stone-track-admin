@@ -27,4 +27,21 @@ namespace StoneTrackAdmin.Models
         public float WeightPer { get; set; }
        
     }
+
+    public class DownloadEntrySlipModel
+    {
+        public int OrderId { get; set; }
+        public string VehicleNo { get; set; }
+        public string DriverName { get; set; }
+        public string DriverMobileNo { get; set; }
+        public string MaterialType { get; set; }
+        public float Amount { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerAddress { get; set; }
+        public string PaymentStatus { get; set; }
+        public float ActualWeight { get; set; }
+        public float NetAmount { get; set; }
+        public DateTime OrderDate { get; set; }
+
+    }
 }

@@ -239,6 +239,24 @@ namespace StoneTrackAdmin.Services
             }
         }
 
+        public async Task<DownloadEntrySlipModel> DownloadEntrySlip(int OrderId)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@OrderId", OrderId);
+                string query = string.Empty;
+                query = "Select OrderId,VehicleNo,DriverName,DriverMobileNo,MaterialType,Amount,PaymentStatus,CustomerName,CustomerAddress,ActualWeight,NetAmount,OrderDate " +
+                    "from Orders where OrderId=1025";
+                var data = await _dapper.GetFirstOrDefaultAsync<DownloadEntrySlipModel>(query, parameters);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //public async Task UpdateOrderStatus(UpdateOrderStatusModel data)
         //{
         //    try

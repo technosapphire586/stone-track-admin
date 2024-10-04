@@ -1,0 +1,89 @@
+﻿@model StoneTrackAdmin.Models.DownloadEntrySlipModel
+@{
+    ViewData["Title"] = "DownloadEntrySlip";
+    Layout = null;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+    @@media print {
+        @@page {
+            margin: 0;
+        }
+    }
+
+   body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        /*width: 210mm;
+        height: 297mm;*/
+    }
+
+    .slip {
+        width: 130mm;
+        margin: 10mm auto;
+        padding: 10mm;
+        border: 2px solid #000;
+        text-align: center;
+    }
+
+    .header {
+        font-size: 18px;
+        margin-bottom: 15mm;
+    }
+
+    .section {
+        margin-top: 10mm;
+        font-size: 14px;
+    }
+
+    .qr {
+        margin-top: 20mm;
+    }
+
+        .barcode,
+        .qr img {
+            display: block;
+            margin: 0 auto;
+        }
+</style>
+
+<div class="slip">
+    <div class="header">
+        <p>
+            <h2 style="margin: 0;">R INSPRIO IT PRIVATE LIMITED </h2>
+            GSTIN: 09AAHCR4278D1Z6<br>
+            E-160, Sector 63, Gautambuddha Nagar, <br>
+            Uttar Pradesh - 201301
+        </p>
+
+        <p>YARD ENTRY SLIP</p>
+        <p><strong>OUTBOUND</strong><br>
+        CRUSHED REJ STONE <br> <strong>(@Model.MaterialType)</strong></p>
+
+        <h4> @Model.OrderDate.ToString("dd-MMM-yyyy  hh:mm:ss tt") </h4>
+
+        <p>Entry Slip No.  <br><strong>ESN0024/@Model.OrderId </strong> </p>
+
+        <p>Customer Name. <br><strong>@Model.CustomerName</strong>  </p>
+        <p>Customer Address. <br> <strong>@Model.CustomerAddress</strong> </p>
+
+        <p>Pass Code. <br> <strong>G024/@Model.OrderId</strong>  </p>
+        <p>Vehicle Regn No. <br> <strong>@Model.VehicleNo</strong></p>
+
+        <p>Driver Name. <br> <strong>@Model.DriverName</strong> </p>
+        <p>Driver Mobile No. <br> <strong>@Model.DriverMobileNo</strong> </p>
+
+    </div>
+</div>
+
+<script>
+
+     $(document).ready(function () {
+      window.print();
+       setTimeout(function () {
+           window.close();
+       }, 1000);
+     });
+</script>

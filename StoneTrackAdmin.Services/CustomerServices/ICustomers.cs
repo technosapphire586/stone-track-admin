@@ -20,6 +20,7 @@ namespace StoneTrackAdmin.Services
         Task<InvoiceModel> GenerateInvoiceData(int OrderId);
         Task<OrderDetailsCountModel> CountTotaOrder();
         Task<List<OrderDetailsModel>> StatusOrderDetails(string Status);
+        Task<DownloadEntrySlipModel> DownloadEntrySlip(int OrderId);
 
         //Task<List<CustomerDetailsModel>> CustomerDetails();
         //Task<ViewCustomerDetailsModel> ViewCustomerDetails(int CustomerId);

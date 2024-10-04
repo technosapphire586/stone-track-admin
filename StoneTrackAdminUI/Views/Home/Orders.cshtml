@@ -173,41 +173,47 @@
                                             <th>View</th>
                                             <th>Delete</th>
                                             <th>Download Invoice</th>
+                                            <th>Download Entry Slip</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @foreach (var obj in Model.OrderDetailsList)
                                         {
-                                            <tr>
-                                                <td class="@obj.OrderStatus's'"><span class="list-img"><img src="~/listing/1.jpg" alt=""></span></td>
-                                                <td class="@obj.OrderStatus's'">@obj.OrderId</td>
-                                                <td class="@obj.OrderStatus's'">@obj.OrderDate.ToString("MMM dd yyyy  hh:mm tt")</td>
-                                                <td class="@obj.OrderStatus's'">@obj.VehicleNo</td>
-                                                <td class="@obj.OrderStatus's'">@obj.DriverName</td>
-                                                <td class="@obj.OrderStatus's'">@obj.MaterialType</td>
-                                                <td class="@obj.OrderStatus's'">@obj.Weight</td>
-                                                <td class="@obj.OrderStatus's'">@obj.Amount</td>
-                                                <td class="@obj.OrderStatus's'">@obj.CustomerName</td>
-                                                <td class="@obj.OrderStatus's'">@obj.CustomerAddress</td>
-                                                <td class="@obj.OrderStatus's'">@obj.GSTNO</td>
-                                                <td class="@obj.OrderStatus's'">@obj.InvoiceNo</td>
-                                                <td class="@obj.OrderStatus's'">@obj.OrderStatus</td>
-                                                <td class="@obj.OrderStatus's'">
-                                                    <a href="@Url.Action("ViewOrder","Home",new {obj.OrderId})"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                </td>
-                                                <td class="@obj.OrderStatus's'">
-                                                    <a onclick="DeleteOrders('@obj.OrderId')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                </td>
+                                        <tr>
+                                            <td class="@obj.OrderStatus's'"><span class="list-img"><img src="~/listing/1.jpg" alt=""></span></td>
+                                            <td class="@obj.OrderStatus's'">@obj.OrderId</td>
+                                            <td class="@obj.OrderStatus's'">@obj.OrderDate.ToString("MMM dd yyyy  hh:mm tt")</td>
+                                            <td class="@obj.OrderStatus's'">@obj.VehicleNo</td>
+                                            <td class="@obj.OrderStatus's'">@obj.DriverName</td>
+                                            <td class="@obj.OrderStatus's'">@obj.MaterialType</td>
+                                            <td class="@obj.OrderStatus's'">@obj.Weight</td>
+                                            <td class="@obj.OrderStatus's'">@obj.Amount</td>
+                                            <td class="@obj.OrderStatus's'">@obj.CustomerName</td>
+                                            <td class="@obj.OrderStatus's'">@obj.CustomerAddress</td>
+                                            <td class="@obj.OrderStatus's'">@obj.GSTNO</td>
+                                            <td class="@obj.OrderStatus's'">@obj.InvoiceNo</td>
+                                            <td class="@obj.OrderStatus's'">@obj.OrderStatus</td>
+                                            <td class="@obj.OrderStatus's'">
+                                                <a href="@Url.Action("ViewOrder","Home",new {obj.OrderId})"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td class="@obj.OrderStatus's'">
+                                                <a onclick="DeleteOrders('@obj.OrderId')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </td>
 
-                                                <td class="@obj.OrderStatus's'">
-                                                    @if (obj.OrderStatus == "Dispatched")
-                                                    {
-                                                        <a href="@Url.Action("GenerateInvoice", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                    }
-                                                </td>
-
-                                            </tr>
+                                            <td class="@obj.OrderStatus's'">
+                                                @if (obj.OrderStatus == "Dispatched")
+                                                {
+                                                    <a href="@Url.Action("GenerateInvoice", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                }
+                                            </td>
+                                            <td class="@obj.OrderStatus's'">
+                                                @if (obj.OrderStatus == "Dispatched")
+                                                {
+                                                    <a href="@Url.Action("DownloadEntrySlip", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                }
+                                            </td>
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>
