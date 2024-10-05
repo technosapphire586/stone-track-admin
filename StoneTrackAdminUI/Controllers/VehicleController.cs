@@ -1,5 +1,6 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using NPOI.SS.UserModel;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace StoneTrackAdmin.Controllers
 {
+    [Authorize]
     public class VehicleController : Controller
     {
         private readonly IBasicUtility _basic;

@@ -1,4 +1,5 @@
 ﻿using LegumizeUI.Utilites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StoneTrackAdmin.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace StoneTrackAdmin.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IBasicUtility _basic;

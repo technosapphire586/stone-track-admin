@@ -170,6 +170,7 @@
                                         <th>Order Status</th>
                                         <th>View</th>
                                         <th>Download Invoice</th>
+                                        <th>Download Entry Slip</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -192,10 +193,16 @@
                                         <td>
                                             <a href="@Url.Action("ViewOrder","Home",new {obj.OrderId})"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         </td>
-                                        <td >
+                                        <td>
                                             @if (obj.OrderStatus == "Dispatched")
                                             {
                                                 <a href="@Url.Action("GenerateInvoice", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            }
+                                        </td>
+                                        <td >
+                                            @if (obj.OrderStatus == "Dispatched")
+                                            {
+                                                <a href="@Url.Action("DownloadEntrySlip", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
                                             }
                                         </td>
                                     </tr>

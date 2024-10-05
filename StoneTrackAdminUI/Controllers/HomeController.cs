@@ -121,6 +121,7 @@ namespace StoneTrackApi.Controllers
             return View(result);
         }
 
+
         [HttpGet]
         public async Task<IActionResult> DownloadEntrySlip(int OrderId)
         {

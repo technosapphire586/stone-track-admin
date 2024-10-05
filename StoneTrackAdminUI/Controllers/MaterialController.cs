@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoneTrackAdmin.Models;
 using StoneTrackAdmin.Services;
 using StoneTrackAdmin.Utilites;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace StoneTrackAdmin.Controllers
 {
+    [Authorize]
     public class MaterialController : Controller
     {
         private readonly IBasicUtility _basic;
