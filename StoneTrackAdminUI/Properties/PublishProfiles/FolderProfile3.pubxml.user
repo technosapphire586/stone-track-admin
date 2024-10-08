@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>H:\Stone Track All Project\Stone Track Admin Publish</_PublishTargetUrl>
-    <History>True|2024-10-05T14:02:48.0827378Z;</History>
+    <History>True|2024-10-05T14:07:49.7580416Z;True|2024-10-05T19:32:48.0827378+05:30;</History>
   </PropertyGroup>
 </Project>
