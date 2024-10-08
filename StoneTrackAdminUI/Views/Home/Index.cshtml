@@ -202,7 +202,7 @@
                                         <td >
                                             @if (obj.OrderStatus == "Dispatched")
                                             {
-                                                <a href="@Url.Action("DownloadEntrySlip", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("GenerateEntrySlip", "Customer", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
                                             }
                                         </td>
                                     </tr>

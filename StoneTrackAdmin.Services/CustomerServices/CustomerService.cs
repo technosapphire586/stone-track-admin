@@ -247,7 +247,7 @@ namespace StoneTrackAdmin.Services
                 parameters.Add("@OrderId", OrderId);
                 string query = string.Empty;
                 query = "Select OrderId,VehicleNo,DriverName,DriverMobileNo,MaterialType,Amount,PaymentStatus,CustomerName,CustomerAddress,ActualWeight,NetAmount,OrderDate " +
-                    "from Orders where OrderId=1025";
+                    "from Orders where OrderId=@OrderId";
                 var data = await _dapper.GetFirstOrDefaultAsync<DownloadEntrySlipModel>(query, parameters);
                 return data;
             }

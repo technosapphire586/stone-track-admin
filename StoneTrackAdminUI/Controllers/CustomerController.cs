@@ -82,6 +82,28 @@ namespace StoneTrackApi.Controllers
             return RedirectToAction("CustomerDetail", "Customer");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GenerateEntrySlip(int OrderId)
+        {
+            try
+            {
+                var result = await _customer.DownloadEntrySlip(OrderId);
+                if (result!=null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    ViewBag.Error = "Record not Found !!";
+                    return View();
+                }
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Error = ex.ToString();
+                return View();
+            }
+        }
 
     }
 }

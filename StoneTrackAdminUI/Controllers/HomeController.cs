@@ -122,12 +122,12 @@ namespace StoneTrackApi.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> DownloadEntrySlip(int OrderId)
-        {
-            var result = await _customer.DownloadEntrySlip(OrderId);
-            return View(result);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GenerateEntrySlip(int OrderId)
+        //{
+        //    var result = await _customer.DownloadEntrySlip(OrderId);
+        //    return View(result);
+        //}
 
 
 

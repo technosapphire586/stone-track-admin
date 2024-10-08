@@ -179,8 +179,8 @@
 
                                     <tbody>
                                         @foreach (var obj in Model.OrderDetailsList)
-                                        {
-                                        <tr>
+                                         {
+                                          <tr>
                                             <td class="@obj.OrderStatus's'"><span class="list-img"><img src="~/listing/1.jpg" alt=""></span></td>
                                             <td class="@obj.OrderStatus's'">@obj.OrderId</td>
                                             <td class="@obj.OrderStatus's'">@obj.OrderDate.ToString("MMM dd yyyy  hh:mm tt")</td>
@@ -210,11 +210,11 @@
                                             <td class="@obj.OrderStatus's'">
                                                 @if (obj.OrderStatus == "Dispatched")
                                                 {
-                                                    <a href="@Url.Action("DownloadEntrySlip", "Home", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                    <a href="@Url.Action("GenerateEntrySlip", "Customer", new { obj.OrderId })" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                 }
                                             </td>
-                                        </tr>
-                                        }
+                                          </tr>
+                                         }
                                     </tbody>
                                 </table>
                             </div>

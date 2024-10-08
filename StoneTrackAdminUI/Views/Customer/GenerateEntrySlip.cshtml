@@ -1,6 +1,6 @@
 ﻿@model StoneTrackAdmin.Models.DownloadEntrySlipModel
 @{
-    ViewData["Title"] = "DownloadEntrySlip";
+    ViewData["Title"] = "GenerateEntrySlip";
     Layout = null;
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -12,12 +12,10 @@
         }
     }
 
-   body {
+    body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        /*width: 210mm;
-        height: 297mm;*/
     }
 
     .slip {
@@ -50,6 +48,8 @@
 </style>
 
 <div class="slip">
+    @if(Model!=null){
+    
     <div class="header">
         <p>
             <h2 style="margin: 0;">R INSPRIO IT PRIVATE LIMITED </h2>
@@ -59,8 +59,10 @@
         </p>
 
         <p>YARD ENTRY SLIP</p>
-        <p><strong>OUTBOUND</strong><br>
-        CRUSHED REJ STONE <br> <strong>(@Model.MaterialType)</strong></p>
+        <p>
+            <strong>OUTBOUND</strong><br>
+            CRUSHED REJ STONE <br> <strong>(@Model.MaterialType)</strong>
+        </p>
 
         <h4> @Model.OrderDate.ToString("dd-MMM-yyyy  hh:mm:ss tt") </h4>
 
@@ -76,14 +78,20 @@
         <p>Driver Mobile No. <br> <strong>@Model.DriverMobileNo</strong> </p>
 
     </div>
+    
+    }
+    else{
+    <p>@ViewBag.Error</p>
+    }
+    
 </div>
 
 <script>
 
-     $(document).ready(function () {
-      window.print();
-       setTimeout(function () {
-           window.close();
-       }, 1000);
-     });
+    $(document).ready(function () {
+        window.print();
+        setTimeout(function () {
+            window.close();
+        }, 1000);
+    });
 </script>
